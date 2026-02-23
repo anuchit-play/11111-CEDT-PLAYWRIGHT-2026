@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test'
+import users from '../test-data/users/invalid-users.json'
 
 // test.describe = test suite
 test.describe('Login feature', async () => {
@@ -38,9 +39,23 @@ test.describe('Login feature', async () => {
 		// test steps
 
 		await page.getByLabel('Username').click()
-		await page.getByLabel('Username').fill('xxx')
+		await page.getByLabel('Username').fill(users.invalidUsername.username)
 		await page.getByLabel('Password').click()
-		await page.getByLabel('Password').fill('xxxx')
+		await page.getByLabel('Password').fill(users.invalidUsername.password)
+		await page.getByRole('button', { name: 'Login' }).click()
+
+		// Assertion steps
+		await expect(page.locator('.lead.text-danger')).toHaveText(
+			'Login failed! Please ensure the username and password are valid.'
+		)
+	})
+	test('Login failed with wrong password @negative', async ({ page }) => {
+		// test steps
+
+		await page.getByLabel('Username').click()
+		await page.getByLabel('Username').fill(users.invalidPassword.username)
+		await page.getByLabel('Password').click()
+		await page.getByLabel('Password').fill(users.invalidPassword.username)
 		await page.getByRole('button', { name: 'Login' }).click()
 
 		// Assertion steps
