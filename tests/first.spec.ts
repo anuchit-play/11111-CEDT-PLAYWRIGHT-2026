@@ -2,6 +2,8 @@ import { test, expect } from '@playwright/test'
 
 // test.describe = test suite
 test.describe('Login feature', async () => {
+	const URL: string =
+		process.env.URL ?? 'https://katalon-demo-cura.herokuapp.com'
 	test.beforeAll(async () => {
 		console.log('This is before all')
 	})
@@ -9,7 +11,7 @@ test.describe('Login feature', async () => {
 		// Arrange steps
 
 		// navigate to website
-		await page.goto('https://katalon-demo-cura.herokuapp.com/')
+		await page.goto(URL)
 
 		// Action steps
 		await page.getByRole('link', { name: 'Make Appointment' }).click()
