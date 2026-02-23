@@ -2,8 +2,7 @@ import { test, expect } from '@playwright/test'
 
 // test.describe = test suite
 test.describe('Login feature', async () => {
-	const URL: string =
-		process.env.URL ?? 'https://katalon-demo-cura.herokuapp.com'
+	const URL: string = process.env.URL ?? ''
 	test.beforeAll(async () => {
 		console.log('This is before all')
 	})
