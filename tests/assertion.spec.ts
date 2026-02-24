@@ -1,5 +1,4 @@
 import { test, expect } from '@playwright/test'
-import { beforeEach } from 'node:test'
 
 test.describe('Assertion', () => {
 	test.beforeEach(async ({ page }) => {
